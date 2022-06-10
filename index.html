@@ -85,7 +85,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">1</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">1</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a></li>
   </ul>
 </nav>
 
@@ -130,7 +130,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -141,7 +141,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -175,6 +175,123 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://qq825204921.github.io/2022/06/10/HexoBlog-Backup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/wave.jpg">
+      <meta itemprop="name" content="LSW">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="LSW">
+      <meta itemprop="description" content="个人博客">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | LSW">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/06/10/HexoBlog-Backup/" class="post-title-link" itemprop="url">HexoBlog Backup</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2022-06-10 22:24:03 / 修改时间：22:46:56" itemprop="dateCreated datePublished" datetime="2022-06-10T22:24:03+08:00">2022-06-10</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Hexo博客的备份"><a href="#Hexo博客的备份" class="headerlink" title="Hexo博客的备份"></a>Hexo博客的备份</h1><ul>
+<li><h3 id="前提、机制"><a href="#前提、机制" class="headerlink" title="前提、机制"></a>前提、机制</h3><p>  前提是你已经初始化好了自己想要备份的那个博客。GIT、GitHub&#x2F;Gitee环境已经准备好了。</p>
+<p>  机制是这样的，由于hexo d上传部署到github的其实是hexo编译后的文件，是用来生成网页的，不包含源文件。</p>
+</li>
+</ul>
+<h3 id="备份博客"><a href="#备份博客" class="headerlink" title="备份博客"></a>备份博客</h3><ul>
+<li><h4 id="创建新分支"><a href="#创建新分支" class="headerlink" title="创建新分支"></a>创建新分支</h4><p>  在确保有master分支的情况下创建一个用来备份的新分支Hexo，并且将其设置为默认分支</p>
+</li>
+<li><h4 id="获取-git文件"><a href="#获取-git文件" class="headerlink" title="获取.git文件"></a>获取.git文件</h4><p>  原始的博客文件夹只有 .deploy_git 文件夹</p>
+<p>  没有 .git 文件夹，所以我们需要把新分支 clone 到随便一个文件夹，然后把 .git 文件放入现在的博客文件夹中</p>
+</li>
+<li><h4 id="gitignore-文件"><a href="#gitignore-文件" class="headerlink" title=".gitignore 文件"></a>.gitignore 文件</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">.DS_Store</span></span><br><span class="line">Thumbs<span class="number">.</span><span class="built_in">db</span></span><br><span class="line"><span class="built_in">db</span><span class="number">.</span>json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line"><span class="meta">public</span>/</span><br><span class="line"><span class="meta">.deploy</span>*/</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>注意，如果你之前克隆过theme中的主题文件，那么应该把主题文件中的.git文件夹删掉，因为git不能嵌套上传，最好是显示隐藏文件，检查一下有没有，否则上传的时候会出错，导致你的主题文件无法上传，这样你的配置在别的电脑上就用不了了。</strong></p>
+<ul>
+<li><h4 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h4><p>  通过如下命令将本地文件备份到 Github 上。</p>
+<pre><code>  $ git add .
+  $ git commit -m &quot;Backup&quot;
+  $ git push origin hexo
+</code></pre>
+<p>  这样就备份完博客了且在Github上能看到两个分支(master和hexo)。</p>
+</li>
+<li><h4 id="备份命令"><a href="#备份命令" class="headerlink" title="备份命令"></a>备份命令</h4><pre><code>  hexo clean
+  git add .
+  git commit -m &quot;Backup&quot;
+  git push
+  hexo g
+  hexo d
+</code></pre>
+</li>
+</ul>
+<h3 id="恢复博客"><a href="#恢复博客" class="headerlink" title="恢复博客"></a>恢复博客</h3><p>安装git、安装nodejs、安装hexo。</p>
+<ul>
+<li><h4 id="克隆项目到本地"><a href="#克隆项目到本地" class="headerlink" title="克隆项目到本地"></a>克隆项目到本地</h4><pre><code>  $ git clone https://github.com/qq825204921/qq825204921.github.io
+</code></pre>
+</li>
+<li><h4 id="恢复博客的命令"><a href="#恢复博客的命令" class="headerlink" title="恢复博客的命令"></a>恢复博客的命令</h4><pre><code>  $ npm install hexo-cli
+  $ npm install
+  $ npm install hexo-deployer-git
+</code></pre>
+  <strong>在此不用执行 hexo init 指令，因为不是从零开始搭建博客。</strong></li>
+</ul>
+<h3 id="恢复完成"><a href="#恢复完成" class="headerlink" title="恢复完成"></a>恢复完成</h3><pre><code>hexo clean
+hexo g
+hexo d
+hexo s
+</code></pre>
+<p>查看本地运行状态，可以开始写博客了！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

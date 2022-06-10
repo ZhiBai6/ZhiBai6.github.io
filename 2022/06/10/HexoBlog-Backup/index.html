@@ -20,28 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qq825204921.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="欢迎阅读。">
+    <meta name="description" content="Hexo博客的备份 前提、机制  前提是你已经初始化好了自己想要备份的那个博客。GIT、GitHub&#x2F;Gitee环境已经准备好了。   机制是这样的，由于hexo d上传部署到github的其实是hexo编译后的文件，是用来生成网页的，不包含源文件。   备份博客 创建新分支  在确保有master分支的情况下创建一个用来备份的新分支Hexo，并且将其设置为默认分支  获取.git文件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LSW&#39;s Blog">
-<meta property="og:url" content="https://qq825204921.github.io/2022/06/08/Hello-World/index.html">
+<meta property="og:title" content="HexoBlog Backup">
+<meta property="og:url" content="https://qq825204921.github.io/2022/06/10/HexoBlog-Backup/index.html">
 <meta property="og:site_name" content="LSW">
-<meta property="og:description" content="欢迎阅读。">
+<meta property="og:description" content="Hexo博客的备份 前提、机制  前提是你已经初始化好了自己想要备份的那个博客。GIT、GitHub&#x2F;Gitee环境已经准备好了。   机制是这样的，由于hexo d上传部署到github的其实是hexo编译后的文件，是用来生成网页的，不包含源文件。   备份博客 创建新分支  在确保有master分支的情况下创建一个用来备份的新分支Hexo，并且将其设置为默认分支  获取.git文件">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-08T08:41:20.000Z">
-<meta property="article:modified_time" content="2022-06-10T12:25:33.997Z">
+<meta property="article:published_time" content="2022-06-10T14:24:03.000Z">
+<meta property="article:modified_time" content="2022-06-10T14:46:56.306Z">
 <meta property="article:author" content="LSW">
-<meta property="article:tag" content="aboutme">
+<meta property="article:tag" content="备份">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="博客">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://qq825204921.github.io/2022/06/08/Hello-World/">
+<link rel="canonical" href="https://qq825204921.github.io/2022/06/10/HexoBlog-Backup/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qq825204921.github.io/2022/06/08/Hello-World/","path":"2022/06/08/Hello-World/","title":"LSW's Blog"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qq825204921.github.io/2022/06/10/HexoBlog-Backup/","path":"2022/06/10/HexoBlog-Backup/","title":"HexoBlog Backup"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>LSW's Blog | LSW</title>
+<title>HexoBlog Backup | LSW</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -119,7 +121,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AC%A2%E8%BF%8E%E9%98%85%E8%AF%BB%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">欢迎阅读。</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%A4%87%E4%BB%BD"><span class="nav-number">1.</span> <span class="nav-text">Hexo博客的备份</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E6%8F%90%E3%80%81%E6%9C%BA%E5%88%B6"><span class="nav-number">1.0.1.</span> <span class="nav-text">前提、机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.0.2.</span> <span class="nav-text">备份博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B0%E5%88%86%E6%94%AF"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">创建新分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8E%B7%E5%8F%96-git%E6%96%87%E4%BB%B6"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">获取.git文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#gitignore-%E6%96%87%E4%BB%B6"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">.gitignore 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD"><span class="nav-number">1.0.2.4.</span> <span class="nav-text">备份</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%87%E4%BB%BD%E5%91%BD%E4%BB%A4"><span class="nav-number">1.0.2.5.</span> <span class="nav-text">备份命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%81%A2%E5%A4%8D%E5%8D%9A%E5%AE%A2"><span class="nav-number">1.0.3.</span> <span class="nav-text">恢复博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%8B%E9%9A%86%E9%A1%B9%E7%9B%AE%E5%88%B0%E6%9C%AC%E5%9C%B0"><span class="nav-number">1.0.3.1.</span> <span class="nav-text">克隆项目到本地</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%81%A2%E5%A4%8D%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="nav-number">1.0.3.2.</span> <span class="nav-text">恢复博客的命令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%81%A2%E5%A4%8D%E5%AE%8C%E6%88%90"><span class="nav-number">1.0.4.</span> <span class="nav-text">恢复完成</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -189,7 +191,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qq825204921.github.io/2022/06/08/Hello-World/">
+    <link itemprop="mainEntityOfPage" href="https://qq825204921.github.io/2022/06/10/HexoBlog-Backup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/wave.jpg">
@@ -202,12 +204,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="LSW's Blog | LSW">
+      <meta itemprop="name" content="HexoBlog Backup | LSW">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LSW's Blog
+          HexoBlog Backup
         </h1>
 
         <div class="post-meta-container">
@@ -217,24 +219,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-06-08 16:41:20" itemprop="dateCreated datePublished" datetime="2022-06-08T16:41:20+08:00">2022-06-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-10 20:25:33" itemprop="dateModified" datetime="2022-06-10T20:25:33+08:00">2022-06-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Java/" itemprop="url" rel="index"><span itemprop="name">Java</span></a>
-        </span>
+      <time title="创建时间：2022-06-10 22:24:03 / 修改时间：22:46:56" itemprop="dateCreated datePublished" datetime="2022-06-10T22:24:03+08:00">2022-06-10</time>
     </span>
 
   
@@ -247,8 +234,54 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <blockquote>
-<h1 id="欢迎阅读。"><a href="#欢迎阅读。" class="headerlink" title="欢迎阅读。"></a>欢迎阅读。</h1></blockquote>
+        <h1 id="Hexo博客的备份"><a href="#Hexo博客的备份" class="headerlink" title="Hexo博客的备份"></a>Hexo博客的备份</h1><ul>
+<li><h3 id="前提、机制"><a href="#前提、机制" class="headerlink" title="前提、机制"></a>前提、机制</h3><p>  前提是你已经初始化好了自己想要备份的那个博客。GIT、GitHub&#x2F;Gitee环境已经准备好了。</p>
+<p>  机制是这样的，由于hexo d上传部署到github的其实是hexo编译后的文件，是用来生成网页的，不包含源文件。</p>
+</li>
+</ul>
+<h3 id="备份博客"><a href="#备份博客" class="headerlink" title="备份博客"></a>备份博客</h3><ul>
+<li><h4 id="创建新分支"><a href="#创建新分支" class="headerlink" title="创建新分支"></a>创建新分支</h4><p>  在确保有master分支的情况下创建一个用来备份的新分支Hexo，并且将其设置为默认分支</p>
+</li>
+<li><h4 id="获取-git文件"><a href="#获取-git文件" class="headerlink" title="获取.git文件"></a>获取.git文件</h4><p>  原始的博客文件夹只有 .deploy_git 文件夹</p>
+<p>  没有 .git 文件夹，所以我们需要把新分支 clone 到随便一个文件夹，然后把 .git 文件放入现在的博客文件夹中</p>
+</li>
+<li><h4 id="gitignore-文件"><a href="#gitignore-文件" class="headerlink" title=".gitignore 文件"></a>.gitignore 文件</h4><figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">.DS_Store</span></span><br><span class="line">Thumbs<span class="number">.</span><span class="built_in">db</span></span><br><span class="line"><span class="built_in">db</span><span class="number">.</span>json</span><br><span class="line">*.log</span><br><span class="line">node_modules/</span><br><span class="line"><span class="meta">public</span>/</span><br><span class="line"><span class="meta">.deploy</span>*/</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>注意，如果你之前克隆过theme中的主题文件，那么应该把主题文件中的.git文件夹删掉，因为git不能嵌套上传，最好是显示隐藏文件，检查一下有没有，否则上传的时候会出错，导致你的主题文件无法上传，这样你的配置在别的电脑上就用不了了。</strong></p>
+<ul>
+<li><h4 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h4><p>  通过如下命令将本地文件备份到 Github 上。</p>
+<pre><code>  $ git add .
+  $ git commit -m &quot;Backup&quot;
+  $ git push origin hexo
+</code></pre>
+<p>  这样就备份完博客了且在Github上能看到两个分支(master和hexo)。</p>
+</li>
+<li><h4 id="备份命令"><a href="#备份命令" class="headerlink" title="备份命令"></a>备份命令</h4><pre><code>  hexo clean
+  git add .
+  git commit -m &quot;Backup&quot;
+  git push
+  hexo g
+  hexo d
+</code></pre>
+</li>
+</ul>
+<h3 id="恢复博客"><a href="#恢复博客" class="headerlink" title="恢复博客"></a>恢复博客</h3><p>安装git、安装nodejs、安装hexo。</p>
+<ul>
+<li><h4 id="克隆项目到本地"><a href="#克隆项目到本地" class="headerlink" title="克隆项目到本地"></a>克隆项目到本地</h4><pre><code>  $ git clone https://github.com/qq825204921/qq825204921.github.io
+</code></pre>
+</li>
+<li><h4 id="恢复博客的命令"><a href="#恢复博客的命令" class="headerlink" title="恢复博客的命令"></a>恢复博客的命令</h4><pre><code>  $ npm install hexo-cli
+  $ npm install
+  $ npm install hexo-deployer-git
+</code></pre>
+  <strong>在此不用执行 hexo init 指令，因为不是从零开始搭建博客。</strong></li>
+</ul>
+<h3 id="恢复完成"><a href="#恢复完成" class="headerlink" title="恢复完成"></a>恢复完成</h3><pre><code>hexo clean
+hexo g
+hexo d
+hexo s
+</code></pre>
+<p>查看本地运行状态，可以开始写博客了！</p>
 
     </div>
 
@@ -258,18 +291,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/aboutme/" rel="tag"># aboutme</a>
+              <a href="/tags/%E5%A4%87%E4%BB%BD/" rel="tag"># 备份</a>
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2022/06/08/Hello-World/" rel="prev" title="LSW's Blog">
+                  <i class="fa fa-chevron-left"></i> LSW's Blog
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/06/10/HexoBlog-Backup/" rel="next" title="HexoBlog Backup">
-                  HexoBlog Backup <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
