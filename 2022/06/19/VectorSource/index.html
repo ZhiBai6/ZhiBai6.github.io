@@ -20,28 +20,37 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qq825204921.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"disqus","storage":true,"lazyload":false,"nav":null,"activeClass":"disqus"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="欢迎阅读。">
+    <meta name="description" content="Vector底层源码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="LSW&#39;s Blog">
-<meta property="og:url" content="https://qq825204921.github.io/2022/06/08/Hello-World/index.html">
+<meta property="og:title" content="Vector底层源码">
+<meta property="og:url" content="https://qq825204921.github.io/2022/06/19/VectorSource/index.html">
 <meta property="og:site_name" content="LSW">
-<meta property="og:description" content="欢迎阅读。">
+<meta property="og:description" content="Vector底层源码">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-06-08T08:41:20.000Z">
-<meta property="article:modified_time" content="2022-06-10T15:10:21.135Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619215909.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619220046.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619220400.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619221135.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619221341.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619221941.png">
+<meta property="article:published_time" content="2022-06-19T13:56:08.000Z">
+<meta property="article:modified_time" content="2022-06-19T14:20:25.361Z">
 <meta property="article:author" content="LSW">
-<meta property="article:tag" content="aboutme">
+<meta property="article:tag" content="底层源码">
+<meta property="article:tag" content="集合">
+<meta property="article:tag" content="JAVA">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619215909.png">
 
 
-<link rel="canonical" href="https://qq825204921.github.io/2022/06/08/Hello-World/">
+<link rel="canonical" href="https://qq825204921.github.io/2022/06/19/VectorSource/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qq825204921.github.io/2022/06/08/Hello-World/","path":"2022/06/08/Hello-World/","title":"LSW's Blog"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://qq825204921.github.io/2022/06/19/VectorSource/","path":"2022/06/19/VectorSource/","title":"Vector底层源码"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>LSW's Blog | LSW</title>
+<title>Vector底层源码 | LSW</title>
   
 
   <script src="/js/third-party/analytics/baidu-analytics.js"></script>
@@ -119,7 +128,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AC%A2%E8%BF%8E%E9%98%85%E8%AF%BB%E3%80%82"><span class="nav-number">1.</span> <span class="nav-text">欢迎阅读。</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vector%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">Vector底层源码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.</span> <span class="nav-text">示例代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%99%A8%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.2.</span> <span class="nav-text">构造器的初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E5%8F%82%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">无参构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E5%8F%82%E6%9E%84%E9%80%A0%E5%99%A8"><span class="nav-number">1.2.2.</span> <span class="nav-text">有参构造器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%A7%E8%A1%8C-vector-add"><span class="nav-number">1.3.</span> <span class="nav-text">执行 vector.add()</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ensureCapacityHelper-%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.1.</span> <span class="nav-text">ensureCapacityHelper 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#grow-%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.2.</span> <span class="nav-text">grow() 方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">1.4.</span> <span class="nav-text">结论</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -189,7 +198,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qq825204921.github.io/2022/06/08/Hello-World/">
+    <link itemprop="mainEntityOfPage" href="https://qq825204921.github.io/2022/06/19/VectorSource/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/wave.jpg">
@@ -202,12 +211,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="LSW's Blog | LSW">
+      <meta itemprop="name" content="Vector底层源码 | LSW">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          LSW's Blog
+          Vector底层源码
         </h1>
 
         <div class="post-meta-container">
@@ -217,15 +226,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2022-06-08 16:41:20" itemprop="dateCreated datePublished" datetime="2022-06-08T16:41:20+08:00">2022-06-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2022-06-10 23:10:21" itemprop="dateModified" datetime="2022-06-10T23:10:21+08:00">2022-06-10</time>
+      <time title="创建时间：2022-06-19 21:56:08 / 修改时间：22:20:25" itemprop="dateCreated datePublished" datetime="2022-06-19T21:56:08+08:00">2022-06-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -233,7 +236,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
+          <a href="/categories/JAVA/" itemprop="url" rel="index"><span itemprop="name">JAVA</span></a>
         </span>
     </span>
 
@@ -247,8 +250,34 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <blockquote>
-<h1 id="欢迎阅读。"><a href="#欢迎阅读。" class="headerlink" title="欢迎阅读。"></a>欢迎阅读。</h1></blockquote>
+        <h1 id="Vector底层源码"><a href="#Vector底层源码" class="headerlink" title="Vector底层源码"></a>Vector底层源码</h1><span id="more"></span>
+<h2 id="示例代码"><a href="#示例代码" class="headerlink" title="示例代码"></a>示例代码</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">//无参构造器</span></span><br><span class="line">        <span class="type">Vector</span> <span class="variable">vector</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Vector</span>();</span><br><span class="line">        <span class="comment">//有参构造器</span></span><br><span class="line">        <span class="comment">//Vector vector = new Vector(8);</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            vector.add(i);</span><br><span class="line">        &#125;</span><br><span class="line">        vector.add(<span class="number">100</span>);</span><br><span class="line">        System.out.println(<span class="string">&quot;vector=&quot;</span> + vector);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="构造器的初始化"><a href="#构造器的初始化" class="headerlink" title="构造器的初始化"></a>构造器的初始化</h2><h3 id="无参构造器"><a href="#无参构造器" class="headerlink" title="无参构造器"></a>无参构造器</h3><p><img src="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619215909.png" alt="无参构造器"></p>
+<h3 id="有参构造器"><a href="#有参构造器" class="headerlink" title="有参构造器"></a>有参构造器</h3><p><img src="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619220046.png" alt="有参构造器"></p>
+<h2 id="执行-vector-add"><a href="#执行-vector-add" class="headerlink" title="执行 vector.add()"></a>执行 vector.add()</h2><p><img src="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619220400.png" alt="vector.add()"></p>
+<ol>
+<li>modCount++ 记录集合被修改的次数</li>
+<li>ensureCapacityHelper 方法确定是否需要扩容</li>
+</ol>
+<h3 id="ensureCapacityHelper-方法"><a href="#ensureCapacityHelper-方法" class="headerlink" title="ensureCapacityHelper 方法"></a>ensureCapacityHelper 方法</h3><p><img src="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619221135.png"></p>
+<ol>
+<li>确定是否需要扩容的条件 minCapacity - elementData.length &gt; 0</li>
+<li>grow()方法扩容方法</li>
+</ol>
+<h3 id="grow-方法"><a href="#grow-方法" class="headerlink" title="grow() 方法"></a>grow() 方法</h3><p><img src="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619221341.png"></p>
+<ol>
+<li>扩容算法 oldCapacity + ((capacityIncrement &gt; 0) ?<br>capacityIncrement : oldCapacity); 扩容两倍</li>
+<li>扩容完毕使用 Arrays.copyOf() 方法拷贝数组</li>
+</ol>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><ol>
+<li><p>Vector 的底层也是一个对象数组，protected Object[] elementData;</p>
+</li>
+<li><p>Vector 是线程同步的，即线程安全，Vector 类的操作方法有synchronized<br><img src="https://cdn.jsdelivr.net/gh/qq825204921/BlogImage@main/img/20220619221941.png"></p>
+</li>
+<li><p>在开发中需要考虑线程安全时，考虑使用 Vector</p>
+</li>
+</ol>
 
     </div>
 
@@ -258,18 +287,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/aboutme/" rel="tag"># aboutme</a>
+              <a href="/tags/%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81/" rel="tag"># 底层源码</a>
+              <a href="/tags/%E9%9B%86%E5%90%88/" rel="tag"># 集合</a>
+              <a href="/tags/JAVA/" rel="tag"># JAVA</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2022/06/19/ArrayList/" rel="prev" title="ArrayList底层源码">
+                  <i class="fa fa-chevron-left"></i> ArrayList底层源码
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2022/06/10/HexoBlog-Backup/" rel="next" title="Hexo博客的备份">
-                  Hexo博客的备份 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
